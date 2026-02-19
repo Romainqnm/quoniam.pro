@@ -135,111 +135,73 @@ import audioIcon from '../assets/icone_audio.png';
         transform: rotate(6deg);
       }
 
-      .flow-line {
+      .side-ribbons {
         position: absolute;
-        left: 0;
-        right: 0;
-        height: clamp(7px, 0.8vw, 11px);
-        border-radius: 999px;
-        opacity: 0.84;
-        background:
-          linear-gradient(90deg, transparent 0%, transparent 6%, var(--line-a) 16%, var(--line-b) 46%, var(--line-a) 72%, transparent 92%, transparent 100%);
-        box-shadow: 0 0 0 1px rgba(220, 238, 255, 0.16) inset;
-        -webkit-mask-image: linear-gradient(90deg, transparent 0%, #000 12%, #000 88%, transparent 100%);
-        mask-image: linear-gradient(90deg, transparent 0%, #000 12%, #000 88%, transparent 100%);
-        animation:
-          lineFlow var(--dur) cubic-bezier(0.45, 0.08, 0.23, 1) infinite,
-          lineTwist calc(var(--dur) * 0.58) ease-in-out infinite,
-          lineOpacity calc(var(--dur) * 0.41) ease-in-out infinite;
-        animation-delay: var(--delay), calc(var(--delay) * 0.45), calc(var(--delay) * 0.72);
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        overflow: visible;
       }
 
-      .side-waves-group.left .flow-line:nth-child(1) {
-        top: 14%;
-        --line-a: rgba(99, 214, 255, 0.95);
-        --line-b: rgba(176, 107, 255, 0.95);
+      .side-waves-group.right .side-ribbons {
+        transform: scaleX(-1);
+      }
+
+      .side-waves-group.left .ribbon-cloud {
+        filter: url(#ribbonDistort-left);
+      }
+
+      .side-waves-group.right .ribbon-cloud {
+        filter: url(#ribbonDistort-right);
+      }
+
+      .ribbon {
+        fill: none;
+        vector-effect: non-scaling-stroke;
+        stroke-width: clamp(7px, 0.8vw, 11px);
+        stroke-linecap: round;
+        opacity: 0.84;
+        stroke-dasharray: 210 34 170 28;
+        transform-origin: 50% 50%;
+        filter: drop-shadow(0 0 8px rgba(109, 183, 255, 0.38));
+        animation:
+          ribbonDash var(--dur) linear infinite,
+          ribbonFloat calc(var(--dur) * 0.62) ease-in-out infinite,
+          ribbonGlow calc(var(--dur) * 0.4) ease-in-out infinite;
+        animation-delay: var(--delay), calc(var(--delay) * 0.5), calc(var(--delay) * 0.82);
+      }
+
+      .side-waves-group.left .ribbon-a { stroke: url(#ribbonGradientA-left); }
+      .side-waves-group.left .ribbon-b { stroke: url(#ribbonGradientB-left); }
+      .side-waves-group.right .ribbon-a { stroke: url(#ribbonGradientA-right); }
+      .side-waves-group.right .ribbon-b { stroke: url(#ribbonGradientB-right); }
+
+      .ribbon.r1 {
         --dur: 10.8s;
         --delay: -1.8s;
-        --amp-x: 22px;
-        --amp-y: 16px;
-        --tilt: -7deg;
+        --float-x: 24px;
+        --float-y: 14px;
       }
 
-      .side-waves-group.left .flow-line:nth-child(2) {
-        top: 34%;
-        --line-a: rgba(184, 112, 255, 0.95);
-        --line-b: rgba(108, 197, 255, 0.95);
-        --dur: 12.6s;
-        --delay: -4.4s;
-        --amp-x: 28px;
-        --amp-y: 20px;
-        --tilt: -3deg;
+      .ribbon.r2 {
+        --dur: 12.8s;
+        --delay: -4.6s;
+        --float-x: 30px;
+        --float-y: 18px;
       }
 
-      .side-waves-group.left .flow-line:nth-child(3) {
-        top: 56%;
-        --line-a: rgba(96, 211, 255, 0.93);
-        --line-b: rgba(198, 126, 255, 0.93);
-        --dur: 11.4s;
-        --delay: -2.8s;
-        --amp-x: 20px;
-        --amp-y: 18px;
-        --tilt: -8deg;
+      .ribbon.r3 {
+        --dur: 11.3s;
+        --delay: -2.7s;
+        --float-x: 22px;
+        --float-y: 16px;
       }
 
-      .side-waves-group.left .flow-line:nth-child(4) {
-        top: 78%;
-        --line-a: rgba(171, 100, 255, 0.92);
-        --line-b: rgba(98, 214, 255, 0.92);
-        --dur: 13.2s;
-        --delay: -6.2s;
-        --amp-x: 26px;
-        --amp-y: 14px;
-        --tilt: -4deg;
-      }
-
-      .side-waves-group.right .flow-line:nth-child(1) {
-        top: 18%;
-        --line-a: rgba(186, 114, 255, 0.95);
-        --line-b: rgba(101, 214, 255, 0.95);
-        --dur: 11.1s;
-        --delay: -3.1s;
-        --amp-x: 24px;
-        --amp-y: 15px;
-        --tilt: 6deg;
-      }
-
-      .side-waves-group.right .flow-line:nth-child(2) {
-        top: 38%;
-        --line-a: rgba(102, 213, 255, 0.95);
-        --line-b: rgba(187, 115, 255, 0.95);
-        --dur: 12.9s;
-        --delay: -5.6s;
-        --amp-x: 30px;
-        --amp-y: 19px;
-        --tilt: 4deg;
-      }
-
-      .side-waves-group.right .flow-line:nth-child(3) {
-        top: 60%;
-        --line-a: rgba(183, 111, 255, 0.93);
-        --line-b: rgba(112, 200, 255, 0.93);
-        --dur: 10.6s;
-        --delay: -2.1s;
-        --amp-x: 20px;
-        --amp-y: 17px;
-        --tilt: 8deg;
-      }
-
-      .side-waves-group.right .flow-line:nth-child(4) {
-        top: 80%;
-        --line-a: rgba(99, 210, 255, 0.92);
-        --line-b: rgba(177, 105, 255, 0.92);
+      .ribbon.r4 {
         --dur: 13.4s;
-        --delay: -7s;
-        --amp-x: 27px;
-        --amp-y: 13px;
-        --tilt: 3deg;
+        --delay: -6.4s;
+        --float-x: 28px;
+        --float-y: 12px;
       }
 
       header,
@@ -307,18 +269,21 @@ import audioIcon from '../assets/icone_audio.png';
       }
 
       .brand-signature {
-        margin: -24px auto 0;
+        margin: 0 auto;
+        width: min(860px, 92%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 12px;
+        padding: 8px 16px 10px;
+        position: relative;
+        z-index: 1;
+      }
+
+      .brand-head {
         display: inline-flex;
         align-items: center;
         gap: 12px;
-        padding: 10px 18px;
-        border-radius: 14px;
-        border: 1px solid rgba(185, 209, 255, 0.28);
-        background: linear-gradient(140deg, rgba(16, 21, 50, 0.82), rgba(38, 18, 84, 0.72));
-        backdrop-filter: blur(10px);
-        box-shadow: 0 10px 26px rgba(0, 0, 0, 0.45), 0 0 28px rgba(136, 75, 255, 0.26);
-        position: relative;
-        z-index: 1;
       }
 
       .logo {
@@ -351,11 +316,12 @@ import audioIcon from '../assets/icone_audio.png';
       }
 
       .hub-tagline {
-        margin: 14px auto 0;
-        max-width: 680px;
+        margin: 0;
+        max-width: 720px;
         color: rgba(222, 231, 255, 0.78);
         font-size: 1.02rem;
-        padding-inline: 12px;
+        padding-inline: 8px;
+        text-align: center;
       }
 
       main {
@@ -1131,57 +1097,37 @@ import audioIcon from '../assets/icone_audio.png';
         }
       }
 
-      @keyframes lineFlow {
-        0% {
-          transform: rotate(var(--tilt)) translateX(calc(var(--amp-x) * -0.45)) translateY(calc(var(--amp-y) * -0.25)) scaleX(0.98);
+      @keyframes ribbonDash {
+        from {
+          stroke-dashoffset: 0;
         }
 
-        28% {
-          transform: rotate(calc(var(--tilt) * 0.45)) translateX(var(--amp-x)) translateY(calc(var(--amp-y) * 0.55)) scaleX(1.08);
-        }
-
-        57% {
-          transform: rotate(calc(var(--tilt) * 1.15)) translateX(calc(var(--amp-x) * -0.2)) translateY(var(--amp-y)) scaleX(1.03);
-        }
-
-        100% {
-          transform: rotate(calc(var(--tilt) * 0.3)) translateX(calc(var(--amp-x) * 1.1)) translateY(calc(var(--amp-y) * 0.1)) scaleX(1.09);
+        to {
+          stroke-dashoffset: -520;
         }
       }
 
-      @keyframes lineTwist {
+      @keyframes ribbonFloat {
         0% {
-          border-radius: 999px;
+          transform: translate3d(calc(var(--float-x) * -0.3), calc(var(--float-y) * -0.2), 0) scaleX(0.98);
         }
 
-        35% {
-          border-radius: 72% 28% 64% 36% / 44% 58% 42% 56%;
-        }
-
-        67% {
-          border-radius: 34% 66% 38% 62% / 56% 40% 60% 44%;
+        46% {
+          transform: translate3d(var(--float-x), calc(var(--float-y) * 0.75), 0) scaleX(1.05);
         }
 
         100% {
-          border-radius: 999px;
+          transform: translate3d(calc(var(--float-x) * 0.45), calc(var(--float-y) * -0.1), 0) scaleX(1.02);
         }
       }
 
-      @keyframes lineOpacity {
+      @keyframes ribbonGlow {
         0% {
-          opacity: 0.72;
+          opacity: 0.74;
         }
 
-        24% {
-          opacity: 0.9;
-        }
-
-        55% {
-          opacity: 0.76;
-        }
-
-        79% {
-          opacity: 0.88;
+        30% {
+          opacity: 0.92;
         }
 
         100% {
@@ -1207,14 +1153,18 @@ import audioIcon from '../assets/icone_audio.png';
           opacity: 0.56;
         }
 
-        .flow-line {
-          height: 6px;
-        }
-
         .brand-signature {
           gap: 9px;
-          margin-top: -18px;
-          padding: 8px 12px;
+          margin-top: 0;
+          padding: 6px 10px;
+        }
+
+        .brand-head {
+          gap: 9px;
+        }
+
+        .hub-tagline {
+          font-size: 0.96rem;
         }
 
         .logo {
@@ -1263,29 +1213,79 @@ import audioIcon from '../assets/icone_audio.png';
   <body>
     <div class="side-waves" aria-hidden="true">
       <div class="side-waves-group left">
-        <span class="flow-line"></span>
-        <span class="flow-line"></span>
-        <span class="flow-line"></span>
-        <span class="flow-line"></span>
+        <svg class="side-ribbons" viewBox="0 0 1000 1200" preserveAspectRatio="none" aria-hidden="true">
+          <defs>
+            <filter id="ribbonDistort-left" x="-8%" y="-8%" width="116%" height="116%">
+              <feTurbulence type="fractalNoise" baseFrequency="0.005 0.018" numOctaves="1" seed="7" result="noise">
+                <animate attributeName="baseFrequency" dur="9s" values="0.005 0.018;0.006 0.02;0.005 0.018" repeatCount="indefinite" />
+              </feTurbulence>
+              <feDisplacementMap in="SourceGraphic" in2="noise" scale="2.2" xChannelSelector="R" yChannelSelector="G">
+                <animate attributeName="scale" dur="7s" values="1.6;2.8;1.6" repeatCount="indefinite" />
+              </feDisplacementMap>
+            </filter>
+            <linearGradient id="ribbonGradientA-left" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="12%" stop-color="rgba(99, 214, 255, 0.95)" />
+              <stop offset="52%" stop-color="rgba(176, 107, 255, 0.95)" />
+              <stop offset="88%" stop-color="rgba(106, 205, 255, 0.94)" />
+            </linearGradient>
+            <linearGradient id="ribbonGradientB-left" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="12%" stop-color="rgba(184, 112, 255, 0.94)" />
+              <stop offset="52%" stop-color="rgba(108, 197, 255, 0.95)" />
+              <stop offset="88%" stop-color="rgba(198, 126, 255, 0.93)" />
+            </linearGradient>
+          </defs>
+          <g class="ribbon-cloud">
+            <path class="ribbon ribbon-a r1" d="M -60 145 C 180 40 410 255 1060 140" />
+            <path class="ribbon ribbon-b r2" d="M -60 370 C 210 292 440 502 1060 360" />
+            <path class="ribbon ribbon-a r3" d="M -60 705 C 220 610 462 840 1060 704" />
+            <path class="ribbon ribbon-b r4" d="M -60 982 C 210 900 486 1118 1060 1032" />
+          </g>
+        </svg>
       </div>
       <div class="side-waves-group right">
-        <span class="flow-line"></span>
-        <span class="flow-line"></span>
-        <span class="flow-line"></span>
-        <span class="flow-line"></span>
+        <svg class="side-ribbons" viewBox="0 0 1000 1200" preserveAspectRatio="none" aria-hidden="true">
+          <defs>
+            <filter id="ribbonDistort-right" x="-8%" y="-8%" width="116%" height="116%">
+              <feTurbulence type="fractalNoise" baseFrequency="0.005 0.018" numOctaves="1" seed="11" result="noise">
+                <animate attributeName="baseFrequency" dur="9s" values="0.005 0.018;0.006 0.02;0.005 0.018" repeatCount="indefinite" />
+              </feTurbulence>
+              <feDisplacementMap in="SourceGraphic" in2="noise" scale="2.2" xChannelSelector="R" yChannelSelector="G">
+                <animate attributeName="scale" dur="7s" values="1.6;2.8;1.6" repeatCount="indefinite" />
+              </feDisplacementMap>
+            </filter>
+            <linearGradient id="ribbonGradientA-right" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="12%" stop-color="rgba(186, 114, 255, 0.95)" />
+              <stop offset="52%" stop-color="rgba(101, 214, 255, 0.95)" />
+              <stop offset="88%" stop-color="rgba(183, 111, 255, 0.93)" />
+            </linearGradient>
+            <linearGradient id="ribbonGradientB-right" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="12%" stop-color="rgba(102, 213, 255, 0.95)" />
+              <stop offset="52%" stop-color="rgba(187, 115, 255, 0.95)" />
+              <stop offset="88%" stop-color="rgba(99, 210, 255, 0.92)" />
+            </linearGradient>
+          </defs>
+          <g class="ribbon-cloud">
+            <path class="ribbon ribbon-a r1" d="M -60 176 C 210 92 420 280 1060 174" />
+            <path class="ribbon ribbon-b r2" d="M -60 400 C 198 318 432 516 1060 388" />
+            <path class="ribbon ribbon-a r3" d="M -60 726 C 206 632 460 862 1060 724" />
+            <path class="ribbon ribbon-b r4" d="M -60 1004 C 224 918 486 1124 1060 1048" />
+          </g>
+        </svg>
       </div>
     </div>
     <header>
       <section class="hero-brand">
         <div class="hero-brand-bg liquid-glass" aria-hidden="true"></div>
         <div class="hero-brand-content">
-          <div class="brand-signature liquid-glass">
-            <img src={hubLogo.src} alt="Logo QUONIAM" class="logo-mark" loading="eager" />
-            <div class="logo">QUONIAM</div>
+          <div class="brand-signature">
+            <div class="brand-head">
+              <img src={hubLogo.src} alt="Logo QUONIAM" class="logo-mark" loading="eager" />
+              <div class="logo">QUONIAM</div>
+            </div>
+            <p class="hub-tagline">
+              Univers Produits immersif : technologies audio, design logiciel et expériences interactives de nouvelle génération.
+            </p>
           </div>
-          <p class="hub-tagline">
-            Univers Produits immersif : technologies audio, design logiciel et expériences interactives de nouvelle génération.
-          </p>
         </div>
       </section>
     </header>

@@ -1,46 +1,64 @@
-# Astro Starter Kit: Basics
+# QUONIAM Hub
 
-```sh
-npm create astro@latest -- --template basics
+Hub visuel immersif pour les produits QUONIAM, développé avec Astro.
+
+Le site présente 4 dimensions produit avec des animations CSS pures, une identité visuelle bleu/violet premium et des transitions de navigation fluides.
+
+## Aperçu
+
+- Home hub: portail principal avec cartes interactives animées
+- Quoniam Audio: univers orchestral génératif
+- Quoniam Vision: univers synthwave et tunnels de fréquences
+- Quoniam Prisma: univers prismes/lumière
+- Quoniam Nexus: univers data/matrice
+
+## Stack
+
+- Astro
+- HTML/CSS (animations CSS natives, sans librairie d’animation JS)
+- View Transitions (`astro:transitions`)
+
+## Routes
+
+- `/`
+- `/quoniam-audio`
+- `/quoniam-vision`
+- `/quoniam-prisma`
+- `/quoniam-nexus`
+
+## Lancer le projet
+
+Depuis la racine:
+
+```bash
+npm install
+npm run dev
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+Build production:
 
-## 🚀 Project Structure
+```bash
+npm run build
+npm run preview
+```
 
-Inside of your Astro project, you'll see the following folders and files:
+## Structure utile
 
 ```text
-/
-├── public/
-│   └── favicon.svg
-├── src
-│   ├── assets
-│   │   └── astro.svg
-│   ├── components
-│   │   └── Welcome.astro
-│   ├── layouts
-│   │   └── Layout.astro
-│   └── pages
-│       └── index.astro
-└── package.json
+src/
+	assets/
+		logo.png
+		icone_audio.png
+	pages/
+		index.astro
+		quoniam-audio.astro
+		quoniam-vision.astro
+		quoniam-prisma.astro
+		quoniam-nexus.astro
 ```
 
-To learn more about the folder structure of an Astro project, refer to [our guide on project structure](https://docs.astro.build/en/basics/project-structure/).
+## Notes
 
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- Le design est volontairement immersif et orienté “portal UX”.
+- Les effets visuels sont principalement gérés en CSS (gradients, masques, keyframes).
+- Le projet est actuellement en première version fonctionnelle (v1 initiale).
